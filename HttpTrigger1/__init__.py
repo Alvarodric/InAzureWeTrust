@@ -1,5 +1,5 @@
 #AZURE FUNCTION to paste in VS CODE , Include __init__.py , deploy it in your Azure account and ready!
-
+#VARIABLES that you need to change :  "connection_string" , "container_name" and line 38 -> "if filename.endswith(".F18")"
 
 import azure.functions as func
 import io
@@ -7,6 +7,8 @@ import zipfile
 from azure.storage.blob import BlobServiceClient, BlobClient
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
+
+     # Put the account key and container of the Blob Storage in "connection_string" and "container_name" so the script can make the connection:
     
     connection_string = "DefaultEndpointsProtocol=https;AccountName=upwrokblobstorage;AccountKey=e2WrALZwO7uYf5iIRNt+LEbJSMHAKqQ8YtjHt4FgqsP6MMnljsUqgHvHtKQujCfG4INiRfFj7PM3+AStqcKcow==;EndpointSuffix=core.windows.net"
 
@@ -31,6 +33,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             # upload the extracted files to Azure Blob Storage
             with zipfile.ZipFile(blob_stream, 'r') as zip_ref:
                 for filename in zip_ref.namelist():
+
+                    # In my case the file within the executable ends with .F18 , so put the ending for your case
                     if filename.endswith(".F18"):
                         file_data = zip_ref.read(filename)
                         file_stream = io.BytesIO(file_data)
