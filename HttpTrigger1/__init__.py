@@ -1,4 +1,4 @@
-#AZURE FUNCTION QUE HAY QUE DESARROLLAR EN VS CODE , lo metes en __init__.py , le das a deploy a tu cuenta de Azure y listo!
+#AZURE FUNCTION to paste in VS CODE , Include __init__.py , deploy it in your Azure account and ready!
 
 
 import azure.functions as func
